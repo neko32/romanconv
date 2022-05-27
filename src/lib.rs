@@ -19,6 +19,18 @@ pub mod roman_num {
 
     use rand::distributions::Distribution;
 
+    pub fn single_flow_with_input() -> Result<(bool, String), anyhow::Error> {
+
+        let mut rng = rand::thread_rng();
+        let n = uni.sample(&mut rng).to_string();
+        print!("Input Roman Number for {} :", &n);
+        std::io::stdout().flush()?;
+        let translated = translate(n.as_str())?;
+        let input_roman = take_romannum_input()?;
+        let rez = input_roman == translated;
+        Ok((rez, translated))
+    }
+
     pub fn single_flow_auto() -> Result<(), anyhow::Error> {
 
         let mut rng = rand::thread_rng();
@@ -41,8 +53,7 @@ pub mod roman_num {
         let mut buf:String = String::new();
         let std_in = stdin();
         std_in.read_line(&mut buf)?;
-
-        Ok(buf)
+        Ok(buf.trim().to_string())
     }
 
     pub fn validate(s:&str) -> bool {
