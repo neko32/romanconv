@@ -11,9 +11,11 @@ fn main() -> Result<(), anyhow::Error> {
     let mut counter = 1;
     let mut correct = 0;
     let mut incorrect = 0;
+    let round_or_rounds = if args.rounds == 1 { "round" } else { "rounds" };
+    let is_are = if args.rounds == 1 { "is" } else { "are" };
 
     let welcome_name_msg = format!("Welcome {}!", args.name);
-    let round_info_msg = format!("Total rounds of this game is {}", args.name);
+    let round_info_msg = format!("Total {} of this game {} {}", round_or_rounds, is_are, args.rounds);
 
     println!("{}", ansi_term::Color::Blue.bold().paint("(=^_^=) ROMAN NUMBER TRANSLATION GAME!! (=^_^=) by Tanuki & Neko"));
     println!("{} {}", ansi_term::Color::Green.paint(welcome_name_msg), ansi_term::Color::Cyan.paint(round_info_msg));
